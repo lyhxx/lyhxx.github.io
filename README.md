@@ -1,3 +1,3 @@
 # blog
 
-地址: lyhxx.github.io
+地址：https://lyhxx.github.io/
