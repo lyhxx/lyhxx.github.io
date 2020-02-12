@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content="">
+  <meta name="author" content="黎远航">
+  <meta name="keywords" content="">
+  <title>SpringBoot快速入门 ~ 有一些文章</title>
+  <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.10.0/css/all.min.css"  >
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="https://cdn.staticfile.org/mdbootstrap/4.8.7/css/mdb.min.css"  >
+<link rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/3.0.1/github-markdown.min.css"  >
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+
+  <link rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
+<script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+  <style type="text/css">
+    .banner-bg {
+      
+      background-position: center;
+      background-repeat: repeat-y;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+  </style>
+</head>
+
+<body class="banner-bg">
+  
+<div id="sidebar" class="sidebar-hide">
+  <span class="sidebar-button sidebar-button-shift" id="toggle-sidebar" >
+    <i class="fa fa-arrow-right on" aria-hidden="true"></i>
+  </span>
+  <div class="sidebar-overlay"></div>
+  <div class="sidebar-intrude">
+    <div class="sidebar-avatar">
+      <img src="https://img.elebu.cn/head.png" srcset="https://img.elebu.cn/head.png" alt="avatar"/>
+    </div>
+    <div class="text-center sidebar-about">
+      <p class="h3 sidebar-author">黎远航</p>
+      <p class="sidebar-subtitle"></p>
+      
+        <a href="https://github.com/lyhxx" class="h4" target="_blank">
+          <i class="fab fa-github" aria-hidden="true"></i>
+        </a>
+        &nbsp;&nbsp;
+      
+        <a href="https://img.elebu.cn/weixin.png" class="h4" target="_blank">
+          <i class="fab fa-weixin" aria-hidden="true"></i>
+        </a>
+        &nbsp;&nbsp;
+      
+        <a href="mailto:lyh@elebu.cn" class="h4" target="_blank">
+          <i class="fas fa-envelope" aria-hidden="true"></i>
+        </a>
+        &nbsp;&nbsp;
+      
+    </div>
+    <div class="sidebar-friend">
+      <p class="h6 sidebar-friend-title">
+        <span class="sidebar-label-left"><i class="fas fa-user-friends"></i></span>
+        <span class="sidebar-label">友情链接</span>
+      </p>
+      <ul class="list-group">
+        
+          <a href="http://javatv.cn" target="_blank">
+            <li class="list-group-item">
+              <i class="fas fa-quote-left"></i>&nbsp;
+              隐无为
+            </li>
+          </a>
+        
+    </ul>
+    </div>
+  </div>
+</div>
+
+
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Home</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">首页</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">归档</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">分类</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">标签</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+</nav>
+
+    <div class="view intro-2 rgba-black-slight" id="background">
+      <div class="full-bg-img">
+        <div class="mask flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+            
+              <br>
+              <p class="mt-3">
+                <i class="far fa-calendar-alt"></i>
+                <span class="post-date">2019-11-25&nbsp;|&nbsp;</span>
+                <i class="far fa-chart-bar"></i>
+                <span class="post-count">449</span>字&nbsp;|&nbsp;
+                <i class="far fa-clock"></i>
+                <span class="post-count">2</span>分钟
+                
+                  <span id="busuanzi_container_page_pv" style="display:none">
+                    &nbsp;|&nbsp;
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv"></span>次
+                  </span>
+                
+              </p>
+            
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  <main id="mainContent" class="rgba-black-slight">
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="SpringBoot快速入门"><a href="#SpringBoot快速入门" class="headerlink" title="SpringBoot快速入门"></a>SpringBoot快速入门</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><a href="https://spring.io/projects/spring-boot/" target="_blank" rel="noopener">官方文档</a></p>
+<blockquote>
+<p>Spring Boot是由Pivotal团队提供的全新框架，其设计目的是用来简化Spring应用的初始搭建以及开发过程。使用Spring boot以后,搭建一个spring应用和开发变得很简单。</p>
+</blockquote>
+<blockquote>
+<p>Springboot就是一些写好了maven的模块，我们在使用SPring就不需以传统的方式来用，只需要以maven导入对应的springboot模块，就能完成一大堆操作。简单的说，它使用maven的方式对Spring应用开发进行进一步封装和简化。</p>
+</blockquote>
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><h3 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h3><pre><code>开发环境JDK    1.8
+项目管理工具    Maven
+开发工具    Eclipse/idea</code></pre><h3 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h3><pre><code class="xml">&lt;!--Spring Boot 父类包--&gt;
+&lt;parent&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+    &lt;version&gt;2.0.5.RELEASE&lt;/version&gt;
+&lt;/parent&gt;</code></pre>
+<pre><code class="xml">&lt;dependencies&gt;
+    &lt;!--导入web包--&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;</code></pre>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p><strong><em>项目结构</em></strong><br><img src="https://img.elebu.cn/19112501.png" srcset="/img/loading.gif" alt="结构图"></p>
+<p><strong><em>Controller</em></strong></p>
+<pre><code class="java">@RestController
+public class HelloController {
+    @RequestMapping(&quot;/&quot;)
+    public String hello(){
+        return &quot;Hello World!&quot;;
+    }
+}</code></pre>
+<p><strong><em>启动类</em></strong></p>
+<pre><code class="java">@SpringBootApplication
+public class RunApp {
+    public static void main(String[] args) {
+        SpringApplication.run(RunApp.class,args);
+        System.err.println(&quot;项目启动成功&quot;);
+    }
+}</code></pre>
+<p><strong><em>测试结果</em></strong><br><img src="https://img.elebu.cn/19112502.png" srcset="/img/loading.gif" alt="结构图"></p>
+<h3 id="热部署"><a href="#热部署" class="headerlink" title="热部署"></a>热部署</h3><blockquote>
+<p>Spring-boot-devtools实现热部署功能</p>
+</blockquote>
+<p><strong><em>pom添加依赖</em></strong></p>
+<pre><code class="xml">&lt;!--热部署--&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;
+    &lt;optional&gt;true&lt;/optional&gt;
+&lt;/dependency&gt;</code></pre>
+<pre><code class="xml">&lt;build&gt;
+    &lt;plugins&gt;
+        &lt;!--可执行包 内置tomcat 可执行 --&gt;
+        &lt;plugin&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;</code></pre>
+<p><strong><em>还需要开启自动编译</em></strong></p>
+<p><img src="https://img.elebu.cn/19112503.png" srcset="/img/loading.gif" alt="设置"></p>
+<p><strong><em>如果没有效果</em></strong></p>
+<blockquote>
+<p>请按Ctrl+Shift+Alt+/</p>
+</blockquote>
+<p><img src="https://img.elebu.cn/19112504.png" srcset="/img/loading.gif" alt="设置2"></p>
+<p><img src="https://img.elebu.cn/19112505.png" srcset="/img/loading.gif" alt="设置3"></p>
+<p>有时候长时间没有自动编译，手动编译一下</p>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <div id="post-tag">
+              
+                <span>
+                  <i class="iconfont icon-inbox"></i>
+                  
+                    <a class="hover-with-bg" href="/categories/Spring">Spring</a>
+                    &nbsp;
+                  
+                </span>
+              
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/Spring">Spring</a>
+                
+                  <a class="hover-with-bg" href="/tags/SpringBoot">SpringBoot</a>
+                
+                  <a class="hover-with-bg" href="/tags/Java">Java</a>
+                
+              </span>
+            </div>
+            
+              <div id="post-note">
+                <div><strong>本文作者：</strong><a href="/">黎远航</a></div>
+                <div><strong>本文链接：</strong><a href="https://lyhxx.github.io/post/191125/">https://lyhxx.github.io/post/191125/</a></div>
+                <div><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</div>
+              </div>
+            
+            
+              <div id="post-nav" class="container">
+                  <div class="row">
+                    
+                      <a href="/post/191203/" id="post-nav-prev" class="col">
+                        <i class="fas fa-arrow-left"></i>
+                        <span class="post-nav-title">Java日期转年龄</span>
+                      </a>
+                    
+                    
+                  </div>
+                </div>
+            
+          </div>
+        </div>
+
+        <!-- custom -->
+        
+
+        <!-- Comments -->
+        <div class="col-lg-10 mx-auto nopadding-md">
+          <div class="container comments mx-auto" id="comments">
+            
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+    
+  </main>
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <div id="footerContent"  class="rgba-black-slight">
+<footer class="pt-5">
+  <div class="text-center py-3">
+    
+
+    
+
+    
+
+    
+      <!-- 一言 -->
+      <div class="footer-hitokoto">
+        <a id="hitokotoa" href="#" target="_blank" rel="nofollow noopener noreferrer">
+          <span id="hitokoto"></span>
+        </a>
+      </div>
+    
+    
+  </div>
+</footer>
+</div>
+<!-- SCRIPTS -->
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js" ></script>
+<script src="https://cdn.staticfile.org/mdbootstrap/4.8.7/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+  <script src="/js/lazyload.js" ></script>
+
+
+  
+    <script src="https://cdn.staticfile.org/tocbot/4.8.1/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+<!-- Plugins -->
+
+  <script src="/lib/prettify/prettify.min.js" ></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+  <script src="https://cdn.staticfile.org/typed.js/2.0.9/typed.min.js" ></script>
+  <script type="text/javascript">
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "SpringBoot快速入门&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+  <script src="https://cdn.staticfile.org/anchor-js/4.2.0/anchor.min.js" ></script>
+  <script type="text/javascript">
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+  <script src="/js/local-search.js" ></script>
+  <script type="text/javascript">
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+  <script src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <script type="text/javascript">
+  /* Fancybox */
+  var setupFancybox = function () {
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(function() {
+    var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      $(this).wrap(element);
+    });
+  };
+  setupFancybox();
+  </script>
+
+
+
+
+
+  <!-- 随机背景 -->
+  <script src="https://cdn.staticfile.org/danielgindi-jquery-backstretch/2.1.15/jquery.backstretch.min.js" ></script>
+  
+  
+    <!-- 本地随机背景 -->
+    <script type="text/javascript">
+      !function(){
+        var random_bg_string = "https://img.elebu.cn/bgimg3.jpg,https://img.elebu.cn/bgimg4.png,";
+        /* 去除图片链接组末尾逗号并转换为数组 */
+        random_bg_string = random_bg_string.substring(0,random_bg_string.length-1);
+        var random_bg_array = random_bg_string.split(",");
+        /* 首张图片随机 */
+        var n = Math.floor(Math.random() * random_bg_array.length);
+        $(".banner-bg").backstretch(
+          random_bg_array,
+          {
+            duration: 20 * 1000,
+            fade: 2 * 1000,
+            start: n,
+            animateFirst: false
+          }
+        );
+      }();
+    </script>
+  
+
+
+  <script type="text/javascript">
+  /*一言API*/
+  $(document).ready(function(){
+    getHitokoto();
+  });
+  function hitokoto(e) {
+    $("#hitokoto").stop().fadeOut(function() {
+      $("#hitokoto").html(e.hitokoto);
+      var element = document.getElementById('hitokotoa');
+      element.href = "https://hitokoto.cn?id=" + e.id;
+      $("#hitokoto").stop().fadeIn()
+    })
+  };
+  function getHitokoto() {
+    var e = ["a", "b", "c", "d"],
+    t = document.createElement("script");
+    t.type = "text/javascript";
+    t.id = "hitokotoko_js";
+    t.src = "//v1.hitokoto.cn/?encode=json&callback=hitokoto&charset=utf-8&cat=" + e[Math.floor(Math.random() * e.length)];
+    $("#hitokoto").append(t);
+  };
+  setInterval(getHitokoto, 1e4);
+  </script>
+
+
+  <script async src="//cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" ></script>
+  
+
+<!-- Functions -->
+<script type="text/javascript">
+  /* 切换背景 */
+  
+  $("#background").removeClass("banner-bg");
+  $("body").addClass("banner-bg");
+  var postToTopHight = $("#board").offset().top;
+  $(window).scroll(function () {
+    var bgDisplay = false;
+    var scrollHeight = document.body.scrollTop + document.documentElement.scrollTop;
+    bgDisplay = scrollHeight >= postToTopHight;
+    if(bgDisplay) {
+      $('#background').removeClass("rgba-black-slight");
+      $('#mainContent').removeClass("rgba-black-slight");
+      $('#footerContent').removeClass("rgba-black-slight");
+    } else {
+      $('#background').addClass("rgba-black-slight");
+      $('#mainContent').addClass("rgba-black-slight");
+      $('#footerContent').addClass("rgba-black-slight");
+    }
+  });
+  
+</script>
+
+
+  <script type="text/javascript">
+    /*窗口监视*/
+    var originalTitle = document.title;
+    window.onblur = function(){document.title = "断开连接~"};
+    window.onfocus = function(){document.title = originalTitle};
+  </script>
+
+
+  <script type="text/javascript">
+    ~function () {
+      function t() {
+          e.width = window.innerWidth,
+          e.height = window.innerHeight,
+          o = Math.round(window.innerWidth * window.innerHeight / 1e4)
+      }
+      function n() {
+          var t = window.innerWidth
+            , d = window.innerHeight
+            , c = e.getContext("2d");
+          c.clearRect(0, 0, t, d),
+          c.fillStyle = "rgba(255, 255, 255, 0.7)",
+          c.beginPath(),
+          a += .01;
+          for (var u = 0; o > u; u++) {
+            var l = r[u];
+            if (!l) {
+              continue
+            }
+            ;c.moveTo(l.x, l.y),
+            c.arc(l.x, l.y, l.radius, 0, 2 * Math.PI, !0),
+            l.y += Math.cos(a) + l.radius / 2,
+            l.x += Math.sin(a * l.direction),
+            (l.x > t + 5 || -5 > l.x || l.y > d) && (u % 3 > 0 ? (r[u].x = Math.random() * t,
+            r[u].y = -10) : Math.sin(a * l.direction) > 0 ? (r[u].x = -5,
+            r[u].y = Math.random() * d) : (r[u].x = t + 5,
+            r[u].y = Math.random() * d))
+          }
+          c.fill(),
+          i(n)
+      }
+      var e = document.createElement("canvas")
+        , i = requestAnimationFrame || msRequestAnimationFrame || function(t) {
+          setTimeout(t, 16)
+        }
+      , a = 0
+      , o = 0
+      , r = [];
+      t(),
+      e.className = "snow",
+      document.body.appendChild(e);
+      for (var d = 0; o > d; d++)
+        r.push({
+            x: Math.random() * window.innerWidth,
+            y: Math.random() * window.innerHeight,
+            radius: 4 * Math.random() + 1,
+            direction: 2 * Math.random() - .5
+        });
+      addEventListener("resize", t),
+      i(n)
+    }();
+  </script>
+
+ 
+ 
+ 
+ 
+ 
+ 
+
+  
+</body>
+</html>
